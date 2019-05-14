@@ -6,14 +6,13 @@ class PigLatinizer
   end
 
   def piglatinize(word)
-    if self.vowels(word)
-      word << "way"
-    else
-      word << word.slice!(/^[^aeiouAEIOU]*/i || "") + 'ay'
-    end
-  end
+    word.split(" ").map do |individual|
 
-  def to_pig_latin(phrase)
-    phrase.split(" ").map{|individual| piglatinize(individual)}.join(" ")
+      if self.vowels(individual)
+        individual << "way"
+      else
+        individual << individual.slice!(/^[^aeiouAEIOU]*/i || "") + 'ay'
+      end
+    end.join(" ")
   end
 end
